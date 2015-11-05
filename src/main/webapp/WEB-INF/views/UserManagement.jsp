@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-  <head>  
-    <title>AngularJS $http Example</title>  
+  <head>
+    <title>Olympic</title>
     <style>
       .username.ng-valid {
           background-color: lightgreen;
@@ -13,7 +13,7 @@
       .username.ng-dirty.ng-invalid-minlength {
           background-color: yellow;
       }
- 
+
       .email.ng-valid {
           background-color: lightgreen;
       }
@@ -23,7 +23,7 @@
       .email.ng-dirty.ng-invalid-email {
           background-color: yellow;
       }
- 
+
     </style>
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
      <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
@@ -48,8 +48,8 @@
                               </div>
                           </div>
                       </div>
-                     
- 
+
+
                       <div class="row">
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="file">Email</label>
@@ -70,7 +70,7 @@
                               </div>
                           </div>
                       </div>
- 
+
                       <div class="row">
                           <div class="form-actions floatRight">
                               <input type="submit"  value="{{!ctrl.user.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
@@ -109,7 +109,7 @@
               </div>
           </div>
       </div>
-       
+
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
       <script src="<c:url value='/static/js/app.js' />"></script>
       <script src="<c:url value='/static/js/service/user_service.js' />"></script>

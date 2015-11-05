@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rpl.olympic.register.controller.UserView;
+import com.rpl.olympic.register.converter.UserConverter;
 import com.rpl.olympic.register.model.User;
 import com.rpl.olympic.register.repository.user.UserDao;
 
@@ -25,9 +26,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public UserView add(User user) {
-		if (userDao.findByEmail(user.getEmail()) != null) { throw new DuplicateKeyException("User alredy exist"); }
-		return madeUserView(userDao.add(user));
+	public UserView add(UserView user) {
+		if (userDao.findByEmail(user.getEmail()) != null) {
+			throw new DuplicateKeyException("User alredy exist");
+		}
+		return madeUserView(userDao.add(madeUser(user)));
 	}
 
 	@Override
@@ -53,22 +56,25 @@ public class UserServiceImpl implements UserService {
 		return madeUserView(user);
 	}
 
+	@Override
+	@Transactional
+	public void update(UserView userView) {
+		userDao.update(madeUser(userView));
+
+	}
+
+	@Override
+	@Transactional
+	public void delete(UserView user) {
+		userDao.remove(madeUser(user));
+
+	}
+
 	private UserView madeUserView(User user) {
-		return new UserView(user.getId(), user.getName(), user.getEmail(), user.getNickname());
+		return UserConverter.convert(user);
 	}
 
-	@Override
-	@Transactional
-	public void update(User currentUser) {
-		userDao.update(currentUser);
-
+	private User madeUser(UserView user) {
+		return UserConverter.convert(user);
 	}
-
-	@Override
-	@Transactional
-	public void delete(User user) {
-		userDao.remove(user);
-
-	}
-
 }
