@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements CrudService<UserView> {
 
 	private UserDao userDao;
 
@@ -58,7 +58,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public void update(UserView userView) {
+	public void update(UserView userView, long id) {
+		userView.setId(id);
 		userDao.update(madeUser(userView));
 
 	}

@@ -2,12 +2,15 @@ package com.rpl.olympic.register.controller;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+import com.rpl.olympic.register.controller.model.ViewModel;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserView {
-	private Long	id;
-	private String	name;
-	private String	email;
-	private String	nickname;
+public class UserView implements ViewModel {
+	private static final long	serialVersionUID	= -5525946398058897481L;
+	private Long				id;
+	private String				name;
+	private String				email;
+	private String				nickname;
 
 	public UserView() {
 	}
@@ -44,10 +47,12 @@ public class UserView {
 		this.nickname = nickname;
 	}
 
+	@Override
 	public Long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(Long id) {
 		this.id = id;
 	}
